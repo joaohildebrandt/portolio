@@ -1,26 +1,22 @@
-import {
-  ChevronDownCircle,
-  Github,
-  Gitlab,
-  Linkedin,
-  Mail,
-} from "lucide-react";
-import Link from "next/link";
-import { Experiences } from "~/components/experiences";
-import ScrollLink from "~/components/scroll-button";
-import { BackgroundBeams } from "~/components/ui/animation/background-beams";
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
-import { Badge } from "~/components/ui/badge";
-import { Button } from "~/components/ui/button";
+import Image from "next/image";
+import { ChevronDownCircle } from "lucide-react";
 
-import { data } from "~/data";
+import { BackgroundBeams } from "~/components/ui/animation/background-beams";
+import { Badge } from "~/components/ui/badge";
+import { CareerList } from "~/components/career-list";
+import { CompanyImagesCarousel } from "~/components/companies-carousel";
+import { EducationList } from "~/components/education-list";
+import { LinksMenu } from "~/components/links-menu";
+import { ScrollLink } from "~/components/scroll-button";
+
+import { companiesImages, educations, careers, menuLinks } from "~/data";
 
 export default function Home() {
   return (
     <div className="container max-w-6xl mx-auto h-full gap-16">
       <main className="col-span-12 pb-1">
         <section
-          className="h-screen flex justify-center items-center"
+          className="min-h-screen flex justify-center items-center"
           id="hero"
         >
           <BackgroundBeams className="-z-[1]" />
@@ -42,39 +38,7 @@ export default function Home() {
                     experiences.
                   </p>
                   <div className="flex items-center justify-center gap-2">
-                    <Button asChild variant="outline" size="icon">
-                      <Link
-                        target="_blank"
-                        href="https://www.linkedin.com/in/joao-hildebrandt"
-                      >
-                        <Linkedin className="h-4 w-4" />
-                      </Link>
-                    </Button>
-                    <Button asChild variant="outline" size="icon">
-                      <Link
-                        target="_blank"
-                        href="https://github.com/JoaoHildebrandt"
-                      >
-                        <Github className="h-4 w-4" />
-                      </Link>
-                    </Button>
-                    <Button asChild variant="outline" size="icon">
-                      <Link
-                        target="_blank"
-                        href="https://gitlab.com/joaop.hildebrandt "
-                      >
-                        <Gitlab className="h-4 w-4" />
-                      </Link>
-                    </Button>
-
-                    <Button asChild variant="outline" size="icon">
-                      <Link
-                        target="_blank"
-                        href="mailto:work@joaohildebrandt.com"
-                      >
-                        <Mail className="h-4 w-4" />
-                      </Link>
-                    </Button>
+                    <LinksMenu data={menuLinks} />
                   </div>
                 </div>
 
@@ -94,69 +58,85 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="pt-16 mt-8 h-screen" id="about">
-          <Badge className="mb-8">About</Badge>
-          <h1 className="scroll-m-20 text-4xl font-extrabold lg:text-5xl mb-4">
-            Your{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-400">
-              project
-            </span>{" "}
-            is one step ahead to be <br /> turned in{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-600">
-              reality.
-            </span>
-          </h1>
-          <p className="leading-relaxed">
-            Lorem ipsum sit dolor ament, lorem ipsum sit dolor Lorem, ipsum
-            dolor sit amet consectetur adipisicing elit. Ad, blanditiis quo odio
-            laboriosam distinctio quidem tempora aperiam, totam aut ea molestiae
-            dolore quibusdam voluptatibus. Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Fugiat molestiae quas minima
-            cupiditate nihil, sequi odit, quam, voluptas repellat iure ab
-            impedit nulla ex beatae debitis dolorem quisquam corrupti quaerat.
-          </p>
-          <div className="flex items-center">companies</div>
+        <section className="pt-16 mt-8 min-h-screen" id="about">
+          <Badge className="mb-8 inline-block w-min">About</Badge>
+
+          <div className="col-span-12 flex flex-col">
+            <h1 className="scroll-m-20 text-4xl font-extrabold lg:text-5xl mb-4">
+              Bring your{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-400">
+                vision
+              </span>{" "}
+              to{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-600">
+                life.
+              </span>
+            </h1>
+
+            <div className="flex flex-col gap-8 md:grid md:grid-cols-12 md:gap-16 mt-4 md:mt-12">
+              <div className="col-span-12 md:col-span-4 flex items-center justify-center">
+                <Image
+                  className="rounded-full grayscale"
+                  src="/images/avatar.jpeg"
+                  width={230}
+                  height={230}
+                  alt={"Avatar"}
+                />
+              </div>
+
+              <div className="col-span-12 md:col-span-8 flex flex-col justify-start">
+                <p className="leading-7 text-md">
+                  Fascinated by technology since childhood, I’ve always been
+                  driven to understand how devices like computers and the
+                  internet work. My passion for full-stack development continues
+                  to grow, leading me to craft high-performance web solutions
+                  that combine technical precision with creativity to solve
+                  complex problems.
+                </p>
+
+                <br />
+
+                <p className="leading-7 text-md">
+                  With a foundation in{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">
+                    React
+                  </span>
+                  ,{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-400">
+                    Node.Js
+                  </span>
+                  , and{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-600 to-gray-400">
+                    Next.JS
+                  </span>
+                  , I specialize in building scalable, efficient applications
+                  with seamless user experiences. From dynamic, responsive
+                  interfaces to modernizing outdated systems, I prioritize
+                  quality, collaboration, and long-term success.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16 md:mt-32 ">
+            <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-400 text-2xl font-bold text-center mb-4">
+              Trusted by Leading Companies
+            </p>
+            <CompanyImagesCarousel images={companiesImages} />
+          </div>
         </section>
 
         <section className="mb-32 mt-8" id="experiences">
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 md:col-span-8">
-              <Badge className="mb-8">Experiences</Badge>
-              <Experiences data={data.experiences} />
+              <Badge className="mb-8">Career</Badge>
+              <CareerList data={careers} />
             </div>
 
             <div className="col-span-12 md:col-span-4">
               <Badge className="mb-8">Education</Badge>
               <div>
-                {data.educations.map((education) => (
-                  <div className="flex items-center gap-4" key={education.id}>
-                    <Avatar>
-                      <AvatarImage
-                        src={education.image_url}
-                        alt={`Logo ${education.name}`}
-                      />
-                      <AvatarFallback>{education.name[0]}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <time className="text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-                        {education.start_year} -{" "}
-                        {education.end_year === "present" ? (
-                          <span className="text-green-400">Present</span>
-                        ) : (
-                          education.end_year
-                        )}
-                      </time>
-
-                      <h3 className="text-lg font-semibold mb-1">
-                        {education.name}
-                      </h3>
-
-                      <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-                        {education.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                <EducationList data={educations} />
               </div>
             </div>
           </div>

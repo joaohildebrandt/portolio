@@ -13,8 +13,14 @@ jobs:
           npm run test
 
       - name: Deploy
-        if: github.ref == 'refs/heads/main'
-        env:
-          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
-        run: |
-          curl "$deploy_url"
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_PRODUCTION_API_KEY }}
+          wait-for-success: true
+
+        # if: github.ref == 'refs/heads/main'
+        # env:
+        #   deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        # run: |
+        #   curl "$deploy_url"
