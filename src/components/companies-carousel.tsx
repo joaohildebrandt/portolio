@@ -23,7 +23,7 @@ export const CompanyImagesCarousel = ({ images }: CompaniesCarouselProps) => {
         watchDrag: false,
       }}
       className="w-full"
-      // plugins={[AutoScroll({ playOnInit: true })]}
+      plugins={[AutoScroll({ playOnInit: true })]}
     >
       <CarouselContent>
         {images.map((image) => (
