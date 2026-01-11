@@ -1,12 +1,12 @@
-import { HTMLAttributeAnchorTarget } from "react";
 import Link from "next/link";
+import type { HTMLAttributeAnchorTarget, ReactElement } from "react";
 
 import { Button } from "./ui/button";
 
 export type LinkMenuProps = {
   data: {
     id: number;
-    icon: JSX.Element;
+    icon: ReactElement;
     label?: string;
     rel?: string;
     target: HTMLAttributeAnchorTarget;
